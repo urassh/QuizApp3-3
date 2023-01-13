@@ -17,14 +17,10 @@ const Answer = ()=>{
 
     const quizHandler = (e)=> {
         const answered = e.currentTarget.id;
-
-        console.log(`index : ${quizIndex}`);
-        console.log(`question : ${QUESTIONS.length}`);
         quizJudge(answered);
         if (quizIndex < QUESTIONS.length-1) {
             setshowResultForm(true);
         } else {
-            console.log(`CorrectCount : ${correctCount}`);
             setshowResultForm(true);
         }
     }
@@ -39,7 +35,6 @@ const Answer = ()=>{
         } else {
             setQuizIndex(()=> quizIndex+1 );
         }
-        console.log(showResultForm);
     }
 
     const quizJudge = (answerButtonIndex) => {
