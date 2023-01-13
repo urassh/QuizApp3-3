@@ -2,23 +2,27 @@ import '../App.css';
 import React, { useState } from 'react';
 import { QUESTIONS } from './questionData';
 import { useHistory } from 'react-router-dom';
-
+import correctImage from "../Images/correct.jpeg";
+import incorrectImage from "../Images/incrrect.png"
+import styled from "styled-components";
+import Modal from "react-modal";
 
 const Answer = ()=>{
-
     const [quizIndex, setQuizIndex] = useState(0);
     const [correctCount, setcorrectCount] = useState(0);
+    const [showResultForm, setshowResultForm] = useState(false);
+    const [result, setResult] = useState("");
+    const [displayResultImage, setDisplayResultImage]= useState("");
     const history = useHistory();
 
     const quizHandler = (e)=> {
         const answered = e.currentTarget.id;
-        
+
         console.log(`index : ${quizIndex}`);
         console.log(`question : ${QUESTIONS.length}`);
         quizJudge(answered);
         if (quizIndex < QUESTIONS.length-1) {
-            setQuizIndex(()=> quizIndex+1 );
-            console.log(`CorrectCount : ${correctCount}`);
+            setshowResultForm(true);
         } else {
             console.log(`CorrectCount : ${correctCount}`);
             if (correctCount === 0) {
@@ -41,21 +45,35 @@ const Answer = ()=>{
         }
     }
 
+    const nextQuiz = () => {
+        setshowResultForm(false)
+        setQuizIndex(()=> quizIndex+1 );
+        console.log(showResultForm);
+    }
+
     const quizJudge = (answerButtonIndex) => {
         const correct = QUESTIONS[quizIndex].correctAnswer;
         const answer = Number(answerButtonIndex);
-        console.log(`第${quizIndex+1}問目quizJudgeが呼ばれています。`);
         if(answer === correct) {
             setcorrectCount(()=> correctCount+1);
-            console.log(`正解です。 現在${correctCount}問正解`);
+            setDisplayResultImage(correctImage);
+            setResult("正解です!!");
         } else {
-            console.log(`不正解です。Answer is ${QUESTIONS[quizIndex].correctAnswer}`)
-            console.log(`現在${correctCount}問正解`);
+            setDisplayResultImage(incorrectImage);
+            setResult("不正解です...");
         }
     }
 
     return(
         <div className="quiz-container">
+            <Modal isOpen={showResultForm}>
+                <div id="result-form">
+                    <h1>{result}</h1>
+                    <img src={displayResultImage} alt="incrrectImage" />
+                    <Button onClick={nextQuiz}>次へ</Button>
+                </div>
+            </Modal>
+            
             <h1>第 {quizIndex+1} 問</h1>
             <p id="quiz-text">
                 {QUESTIONS[quizIndex].quiestionText}
@@ -77,5 +95,22 @@ const Answer = ()=>{
         </div>
     );
 }
+
+const Button = styled.button`
+    width: 100%;
+    height: 48px;
+    margin-top: 40px;
+    line-height: 48px;
+    border-radius: 8px;
+    color: white;
+    background-color: #4366ff;
+    font-family: "ヒラギノ丸ゴ ProN";
+    &:hover {
+        opacity: .8;
+    }
+    &:active {
+        opacity: .5;
+    }
+`;
 
 export {Answer};

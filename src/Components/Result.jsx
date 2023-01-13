@@ -17,7 +17,7 @@ const Result = () =>{
             <Button onClick={TransTop}>トップ画面へ戻る。</Button>
         </React.StrictMode>
         
-    );    
+    );
 }
 
 const TITLE = styled.h1`

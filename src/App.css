@@ -50,3 +50,20 @@ button {
 .quiz-container .answer-buttons .button-4 {
   background-color: #ffae2b;
 }
+
+#result-form {
+  width: 330px;
+  height: 600px;
+  margin:0 auto;
+  background-color: lightgray;
+  text-align: center;
+}
+
+#result-form h1 {
+  color: red;
+}
+
+#result-form img {
+  width: 100%;
+}
+
