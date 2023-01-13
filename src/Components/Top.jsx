@@ -20,7 +20,7 @@ const Top = () => {
 const TITLE = styled.h1`
     font-family: "ヒラギノ丸ゴ ProN";
     font-size: 32px;
-    margin-bottom: 250px;
+    margin-bottom: 300px;
 `;
 
 const Button = styled.button`
