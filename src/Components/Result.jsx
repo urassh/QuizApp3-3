@@ -10,14 +10,11 @@ const Result = () =>{
         history.push('/');
     }
 
-    const Test = () => {
-       console.log(`正解数は、${location.state.correct}`)
-    }
     return(
         <React.StrictMode>
             <h1>結果発表</h1>
+            <h2>正解数は{location.state.correct}問です。</h2>
             <Button onClick={TransTop}>トップ画面へ戻る。</Button>
-            <Button onClick={Test}>テストボタン</Button>
         </React.StrictMode>
         
     );    
