@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import { QUESTIONS } from './questionData';
 import { useHistory } from 'react-router-dom';
 
+
 const Answer = ()=>{
 
     const [quizIndex, setQuizIndex] = useState(0);
+    const [correctCount, setcorrectCount] = useState(0);
     const history = useHistory();
 
     const quizHandler = (e)=> {
@@ -13,26 +15,45 @@ const Answer = ()=>{
         
         console.log(`index : ${quizIndex}`);
         console.log(`question : ${QUESTIONS.length}`);
+        quizJudge(answered);
         if (quizIndex < QUESTIONS.length-1) {
-            console.log(quizJudge(answered));
             setQuizIndex(()=> quizIndex+1 );
+            console.log(`CorrectCount : ${correctCount}`);
         } else {
-            console.log("回答数が問題数を超えました。");
-            history.push("/result");
+            console.log(`CorrectCount : ${correctCount}`);
+            if (correctCount === 0) {
+                console.log("correctCount ===0 ");
+                history.push({
+                    pathname: '/result',
+                    state: {correct: correctCount}
+                });
+            } else {
+                console.log("correctCount !==0 ");
+                console.log(correctCount + 1);
+                //useStateの使用で即座に+1が反映されないため、
+                const updatedCorrectCount = correctCount + 1;
+                history.push({
+                    pathname: '/result',
+                    state: {correct: updatedCorrectCount}
+                });
+            }
+            
         }
     }
 
     const quizJudge = (answerButtonIndex) => {
-        let result = "正誤";
-        if(Number(answerButtonIndex) === QUESTIONS[quizIndex].correctAnswer) {
-            result = "正解です。"
+        const correct = QUESTIONS[quizIndex].correctAnswer;
+        const answer = Number(answerButtonIndex);
+        console.log(`第${quizIndex+1}問目quizJudgeが呼ばれています。`);
+        if(answer === correct) {
+            setcorrectCount(()=> correctCount+1);
+            console.log(`正解です。 現在${correctCount}問正解`);
         } else {
-            result = `不正解です。正解は${QUESTIONS[quizIndex].correctAnswer}`
+            console.log(`不正解です。Answer is ${QUESTIONS[quizIndex].correctAnswer}`)
+            console.log(`現在${correctCount}問正解`);
         }
-        return result;
     }
 
-    
     return(
         <div className="quiz-container">
             <h1>第 {quizIndex+1} 問</h1>

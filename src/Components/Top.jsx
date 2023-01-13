@@ -8,15 +8,32 @@ const Top = () => {
     const TransAnswer = () => {
         history.push('/answer');
     }
+
     return(
         <React.StrictMode>
-            <h1>3-3専用 クイズアプリ</h1>
+            <TITLE>3-3専用 <ul /> クイズアプリ</TITLE>
             <Button onClick={TransAnswer}>クイズに挑戦</Button>
         </React.StrictMode>
     );
 }
 
-const Button = styled.button`
-    
+const TITLE = styled.h1`
+    font-family: "ヒラギノ丸ゴ ProN";
+    font-size: 32px;
+    margin-bottom: 250px;
 `;
+
+const Button = styled.button`
+    width: 100%;
+    height: 48px;
+    margin-top: 16px;
+    padding:16px 0 ;
+    line-height: 48px;
+    border-radius: 8px;
+    color: white;
+    background-color: #ff4343;
+    font-family: "ヒラギノ丸ゴ ProN";
+    font-size: 24px;
+`;
+
 export {Top};
