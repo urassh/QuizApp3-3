@@ -1,17 +1,18 @@
+import {Top} from './Components/Top';
 import { Answer } from './Components/Answer';
 import { Result } from './Components/Result';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import styled from "styled-components";
 
-function App() {
-  console.log("test1");
-  console.log("test2");
-
+const App = () => {
   return (
     <BrowserRouter>
       <QuizContainer>
         <Switch>
           <Route exact path="/">
+            <Top />
+          </Route>
+          <Route exact path="/answer">
             <Answer />
           </Route>
           <Route exact path="/result">

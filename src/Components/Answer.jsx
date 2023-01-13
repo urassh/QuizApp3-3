@@ -1,10 +1,12 @@
 import '../App.css';
 import React, { useState } from 'react';
 import { QUESTIONS } from './questionData';
+import { useHistory } from 'react-router-dom';
 
 const Answer = ()=>{
 
     const [quizIndex, setQuizIndex] = useState(0);
+    const history = useHistory();
 
     const quizHandler = (e)=> {
         const answered = e.currentTarget.id;
@@ -16,7 +18,7 @@ const Answer = ()=>{
             setQuizIndex(()=> quizIndex+1 );
         } else {
             console.log("回答数が問題数を超えました。");
-            
+            history.push("/result");
         }
     }
 
