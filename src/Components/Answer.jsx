@@ -25,29 +25,20 @@ const Answer = ()=>{
             setshowResultForm(true);
         } else {
             console.log(`CorrectCount : ${correctCount}`);
-            if (correctCount === 0) {
-                console.log("correctCount ===0 ");
-                history.push({
-                    pathname: '/result',
-                    state: {correct: correctCount}
-                });
-            } else {
-                console.log("correctCount !==0 ");
-                console.log(correctCount + 1);
-                //useStateの使用で即座に+1が反映されないため、
-                const updatedCorrectCount = correctCount + 1;
-                history.push({
-                    pathname: '/result',
-                    state: {correct: updatedCorrectCount}
-                });
-            }
-            
+            setshowResultForm(true);
         }
     }
 
     const nextQuiz = () => {
-        setshowResultForm(false)
-        setQuizIndex(()=> quizIndex+1 );
+        setshowResultForm(false);
+        if (!(quizIndex < QUESTIONS.length-1)){
+            history.push({
+                pathname: '/result',
+                state: {correct: correctCount}
+            });
+        } else {
+            setQuizIndex(()=> quizIndex+1 );
+        }
         console.log(showResultForm);
     }
 
