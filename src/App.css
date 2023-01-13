@@ -15,14 +15,6 @@ button {
   all: unset;
 }
 
-.quiz-container {
-  margin: 30px auto 0;
-  width: 330px;
-  height: 600px;
-  background-color: white;
-  text-align: center;
-  padding: 16px;
-}
 .quiz-container h1 {
   font-family: "ヒラギノ丸ゴ ProN";
   margin: 8px 0;
