@@ -47,7 +47,7 @@ const RESULT = styled.h2`
     line-height: 64px;
     margin-top: 16px;
     magin-bottom: 64px;
-    font-size: 48px;
+    font-size: 40px;
 `;
 
 const Button = styled.button`
