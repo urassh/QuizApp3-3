@@ -1,11 +1,14 @@
-import '../App.css';
 import React, { useState } from 'react';
-import { QUESTIONS } from './questionData';
 import { useHistory } from 'react-router-dom';
+import Modal from "react-modal";
+import styled from "styled-components";
+
+import '../App.css';
+import { QUESTIONS } from './questionData';
 import correctImage from "../Images/correct.jpeg";
 import incorrectImage from "../Images/incrrect.png"
-import styled from "styled-components";
-import Modal from "react-modal";
+
+
 
 const Answer = ()=>{
     const [quizIndex, setQuizIndex] = useState(0);
@@ -13,6 +16,7 @@ const Answer = ()=>{
     const [showResultForm, setshowResultForm] = useState(false);
     const [result, setResult] = useState("");
     const [displayResultImage, setDisplayResultImage]= useState("");
+    const [quizPoint, setQuizPoint] = useState(0);
     const history = useHistory();
 
     const quizHandler = (e)=> {
@@ -30,7 +34,7 @@ const Answer = ()=>{
         if (!(quizIndex < QUESTIONS.length-1)){
             history.push({
                 pathname: '/result',
-                state: {correct: correctCount}
+                state: {correct: correctCount, point: quizPoint}
             });
         } else {
             setQuizIndex(()=> quizIndex+1 );
@@ -42,6 +46,7 @@ const Answer = ()=>{
         const answer = Number(answerButtonIndex);
         if(answer === correct) {
             setcorrectCount(()=> correctCount+1);
+            setQuizPoint(()=> quizPoint + QUESTIONS[quizIndex].quizPoint);
             setDisplayResultImage(correctImage);
             setResult("正解です!!");
         } else {

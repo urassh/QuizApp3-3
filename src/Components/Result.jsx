@@ -1,19 +1,34 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from "styled-components";
+import { QUESTIONS } from './questionData';
 
 const Result = () =>{
     const history = useHistory();
     const location = useLocation();
+    const [result, setResult] = useState("");
+
+    useEffect(()=>{
+        showResult();
+    }, []);
     
     const TransTop = () => {
         history.push('/');
     }
 
+    const showResult = () => {
+        if(Number(location.state.correct) === QUESTIONS.length) {
+            setResult("全問正解です。");
+        } else {
+            setResult(`${location.state.correct}問正解!!`);
+        }
+    }
+    
     return(
         <React.StrictMode>
             <TITLE>結果発表</TITLE>
-            <RESULT>正解数は...<ul />{location.state.correct}問です!!</RESULT>
+            <RESULT>{result}</RESULT>
+            <RESULT>{location.state.point}ポイント<ul /></RESULT>
             <Button onClick={TransTop}>トップ画面へ戻る。</Button>
         </React.StrictMode>
         
@@ -30,6 +45,7 @@ const TITLE = styled.h1`
 const RESULT = styled.h2`
     font-family: "ヒラギノ丸ゴ ProN";
     line-height: 64px;
+    margin-top: 16px;
     magin-bottom: 64px;
     font-size: 48px;
 `;
