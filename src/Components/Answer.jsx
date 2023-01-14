@@ -8,8 +8,6 @@ import { QUESTIONS } from './questionData';
 import correctImage from "../Images/correct.jpeg";
 import incorrectImage from "../Images/incrrect.png"
 
-
-
 const Answer = ()=>{
     const [quizIndex, setQuizIndex] = useState(0);
     const [correctCount, setcorrectCount] = useState(0);
@@ -22,11 +20,7 @@ const Answer = ()=>{
     const quizHandler = (e)=> {
         const answered = e.currentTarget.id;
         quizJudge(answered);
-        if (quizIndex < QUESTIONS.length-1) {
-            setshowResultForm(true);
-        } else {
-            setshowResultForm(true);
-        }
+        setshowResultForm(true);
     }
 
     const nextQuiz = () => {
