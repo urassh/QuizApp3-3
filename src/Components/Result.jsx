@@ -10,6 +10,7 @@ const Result = () =>{
 
     useEffect(()=>{
         showResult();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
     const TransTop = () => {
