@@ -36,11 +36,11 @@ const Answer = ()=>{
     }
 
     const quizJudge = (answerButtonIndex) => {
-        const correct = QUESTIONS[quizIndex].correctAnswer;
+        const correct = QUESTIONS[quizIndex].correct;
         const answer = Number(answerButtonIndex);
         if(answer === correct) {
             setcorrectCount(()=> correctCount+1);
-            setQuizPoint(()=> quizPoint + QUESTIONS[quizIndex].quizPoint);
+            setQuizPoint(()=> quizPoint + QUESTIONS[quizIndex].point);
             setDisplayResultImage(correctImage);
             setResult("正解です!!");
         } else {
@@ -61,20 +61,20 @@ const Answer = ()=>{
             
             <h1>第 {quizIndex+1} 問</h1>
             <p id="quiz-text">
-                {QUESTIONS[quizIndex].quiestionText}
+                {QUESTIONS[quizIndex].text}
             </p>
             <div className="answer-buttons">
                 <button id="1" className="answer-button button-1" onClick={quizHandler}>
-                    {QUESTIONS[quizIndex].answerButtons[0]}
+                    {QUESTIONS[quizIndex].buttonsList[0]}
                 </button>
                 <button id="2" className="answer-button button-2" onClick={quizHandler}>
-                    {QUESTIONS[quizIndex].answerButtons[1]}
+                    {QUESTIONS[quizIndex].buttonsList[1]}
                 </button>
                 <button id="3" className="answer-button button-3" onClick={quizHandler}>
-                    {QUESTIONS[quizIndex].answerButtons[2]}
+                    {QUESTIONS[quizIndex].buttonsList[2]}
                 </button>
                 <button id="4" className="answer-button button-4" onClick={quizHandler}>
-                    {QUESTIONS[quizIndex].answerButtons[3]}
+                    {QUESTIONS[quizIndex].buttonsList[3]}
                 </button> 
             </div>
         </div>
