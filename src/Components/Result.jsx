@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from "styled-components";
-import { QUESTIONS } from './questionData';
+import { QUESTIONS, QuizDataModel } from './questionData';
 
 const Result = () =>{
     const history = useHistory();
@@ -14,6 +14,7 @@ const Result = () =>{
     }, []);
     
     const TransTop = () => {
+        QuizDataModel.quizIndex = 1;
         history.push('/');
     }
 

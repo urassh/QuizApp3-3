@@ -5,14 +5,13 @@ import styled from "styled-components";
 
 import '../App.css';
 import { QUESTIONS } from './questionData';
-import correctImage from "../Images/correct.jpeg";
-import incorrectImage from "../Images/incrrect.png"
+import correctImage from "../Images/correct.png";
+import incorrectImage from "../Images/incorrect.png"
 
 const Answer = ()=>{
     const [quizIndex, setQuizIndex] = useState(0);
     const [correctCount, setcorrectCount] = useState(0);
     const [showResultForm, setshowResultForm] = useState(false);
-    const [result, setResult] = useState("");
     const [displayResultImage, setDisplayResultImage]= useState("");
     const [quizPoint, setQuizPoint] = useState(0);
     const history = useHistory();
@@ -42,10 +41,8 @@ const Answer = ()=>{
             setcorrectCount(()=> correctCount+1);
             setQuizPoint(()=> quizPoint + QUESTIONS[quizIndex].point);
             setDisplayResultImage(correctImage);
-            setResult("正解です!!");
         } else {
             setDisplayResultImage(incorrectImage);
-            setResult("不正解です...");
         }
     }
 
@@ -53,7 +50,6 @@ const Answer = ()=>{
         <div className="quiz-container">
             <Modal isOpen={showResultForm}>
                 <div id="result-form">
-                    <h1>{result}</h1>
                     <img src={displayResultImage} alt="incrrectImage" />
                     <Button onClick={nextQuiz}>次へ</Button>
                 </div>
