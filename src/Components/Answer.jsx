@@ -9,68 +9,82 @@ import correctImage from "../Images/correct.png";
 import incorrectImage from "../Images/incorrect.png"
 
 const Answer = ()=>{
-    const [quizIndex, setQuizIndex] = useState(0);
-    const [correctCount, setcorrectCount] = useState(0);
-    const [showResultForm, setshowResultForm] = useState(false);
-    const [displayResultImage, setDisplayResultImage]= useState("");
-    const [quizPoint, setQuizPoint] = useState(0);
     const history = useHistory();
+
+    const [quiz, setQuiz] = useState({
+        index: 0,
+        isCorrect: false,
+        correctCount: 0,
+        totalPoint: 0,
+    });
+
+    const [showResultModal, setshowResultModal] = useState(false);
 
     const quizHandler = (e)=> {
         const answered = e.currentTarget.id;
         quizJudge(answered);
-        setshowResultForm(true);
+        setshowResultModal(true);
     }
 
     const nextQuiz = () => {
-        setshowResultForm(false);
-        if (!(quizIndex < QUESTIONS.length-1)){
+        setshowResultModal(false);
+        if (quiz.index === QUESTIONS.length-1){
             history.push({
                 pathname: '/result',
-                state: {correct: correctCount, point: quizPoint}
+                state: {correct: quiz.correctCount, point: quiz.totalPoint}
             });
         } else {
-            setQuizIndex(()=> quizIndex+1 );
+            setQuiz({...quiz, index: quiz.index+1, isCorrect: false});
         }
     }
 
     const quizJudge = (answerButtonIndex) => {
-        const correct = QUESTIONS[quizIndex].correct;
+        const correct = QUESTIONS[quiz.index].correct;
         const answer = Number(answerButtonIndex);
         if(answer === correct) {
-            setcorrectCount(()=> correctCount+1);
-            setQuizPoint(()=> quizPoint + QUESTIONS[quizIndex].point);
-            setDisplayResultImage(correctImage);
+            setQuiz({...quiz,
+                isCorrect: true,
+                correctCount: quiz.correctCount+1,
+                totalPoint: quiz.totalPoint +  QUESTIONS[quiz.index].point
+            });
         } else {
-            setDisplayResultImage(incorrectImage);
+            setQuiz({...quiz, isCorrect: false});
+        }
+    }
+
+    const showResultModalImage = (isCorrect) => {
+        if(isCorrect) {
+            return <img src={correctImage} alt="incrrectImage" />;
+        } else {
+            return <img src={incorrectImage} alt="incrrectImage" />;
         }
     }
 
     return(
         <div className="quiz-container">
-            <Modal isOpen={showResultForm}>
+            <Modal isOpen={showResultModal}>
                 <div id="result-form">
-                    <img src={displayResultImage} alt="incrrectImage" />
+                    {showResultModalImage(quiz.isCorrect)}
                     <Button onClick={nextQuiz}>次へ</Button>
                 </div>
             </Modal>
             
-            <h1>第 {quizIndex+1} 問</h1>
+            <h1>第 {quiz.index+1} 問</h1>
             <p id="quiz-text">
-                {QUESTIONS[quizIndex].text}
+                {QUESTIONS[quiz.index].text}
             </p>
             <div className="answer-buttons">
                 <button id="1" className="answer-button button-1" onClick={quizHandler}>
-                    {QUESTIONS[quizIndex].buttonsList[0]}
+                    {QUESTIONS[quiz.index].buttonsList[0]}
                 </button>
                 <button id="2" className="answer-button button-2" onClick={quizHandler}>
-                    {QUESTIONS[quizIndex].buttonsList[1]}
+                    {QUESTIONS[quiz.index].buttonsList[1]}
                 </button>
                 <button id="3" className="answer-button button-3" onClick={quizHandler}>
-                    {QUESTIONS[quizIndex].buttonsList[2]}
+                    {QUESTIONS[quiz.index].buttonsList[2]}
                 </button>
                 <button id="4" className="answer-button button-4" onClick={quizHandler}>
-                    {QUESTIONS[quizIndex].buttonsList[3]}
+                    {QUESTIONS[quiz.index].buttonsList[3]}
                 </button> 
             </div>
         </div>
