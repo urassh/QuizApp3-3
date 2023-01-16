@@ -1,5 +1,4 @@
 class QuizDataModel {
-
     constructor(text, buttonsList, correct, point) {
         this.text = text;
         this.buttonsList = buttonsList;
@@ -14,6 +13,7 @@ const QUESTIONS = [
     new QuizDataModel("問題文3です問題文3です問題文3です問題文3です問題文3です問題文3です問題文3です問題文3です問題文3です問題文3です", ["1です。", "2です。", "3です。", "4です。"], 3, 2),
     new QuizDataModel("問題文3です問題文3です問題文3です問題文3です問題文3です問題文3です問題文3です問題文3です問題文3です問題文3です", ["1です。", "2です。", "3です。", "4です。"], 4, 2),
     new QuizDataModel("問題文5です問題文5です問題文5です問題文5です問題文5です問題文5です問題文5です問題文5です問題文5です問題文5です", ["1です。", "2です。", "3です。", "4です。"], 1, 2),
+    new QuizDataModel("問題文6です問題文6です問題文6です問題文6です問題文6です問題文6です問題文6です問題文6です問題文6です問題文6です", ["1です。", "2です。", "3です。", "4です。"], 2, 2),
 ];
 
-export {QUESTIONS, QuizDataModel};
+export {QUESTIONS};
