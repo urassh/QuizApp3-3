@@ -4,16 +4,16 @@ import Modal from "react-modal";
 import styled from "styled-components";
 
 import '../App.css';
-import { QUESTIONS, QuizSetting } from './questionData';
+import { QUESTIONS, Quiz } from './questionData';
 import correctImage from "../Images/correct.png";
 import incorrectImage from "../Images/incorrect.png"
 
 const Answer = ()=>{
-    const Max = QuizSetting.MIN + QuizSetting.quizLength;
-    const settingQuetions = QUESTIONS.slice(QuizSetting.MIN, Max);
+    const Max = Quiz.MIN + Quiz.quizLength;
+    const settingQuetions = QUESTIONS.slice(Quiz.MIN, Max);
     const history = useHistory();
     const [quiz, setQuiz] = useState({
-        index: QuizSetting.index,
+        index: Quiz.index,
         isCorrect: false,
         correctCount: 0,
         totalPoint: 0,
@@ -21,9 +21,9 @@ const Answer = ()=>{
     const [showResultModal, setshowResultModal] = useState(false);
 
     useEffect(()=>{
-        const MAX = QuizSetting.MIN + QuizSetting.quizLength;
+        const MAX = Quiz.MIN + Quiz.quizLength;
         if(QUESTIONS.length < MAX ) {
-            QuizSetting.MIN = 0;
+            Quiz.MIN = 0;
         }
     });
 
@@ -35,16 +35,16 @@ const Answer = ()=>{
 
     const nextQuiz = () => {
         setshowResultModal(false);
-        QuizSetting.index += 1;
+        Quiz.index += 1;
         if (quiz.index === settingQuetions.length-1){
-            QuizSetting.MIN = QuizSetting.index + QuizSetting.MIN;
-            QuizSetting.index = 0;
+            Quiz.MIN = Quiz.index + Quiz.MIN;
+            Quiz.index = 0;
             history.push({
                 pathname: '/result',
                 state: {correct: quiz.correctCount, point: quiz.totalPoint}
             });
         } else {
-            setQuiz({...quiz, index: QuizSetting.index, isCorrect: false});
+            setQuiz({...quiz, index: Quiz.index, isCorrect: false});
         }
     }
 
