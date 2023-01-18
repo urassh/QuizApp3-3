@@ -16,7 +16,7 @@ const Answer = ()=>{
         index: Quiz.index,
         isCorrect: false,
         correctCount: Quiz.correctCount,
-        totalPoint: 0,
+        totalPoint: Quiz.totalPoint,
     });
     const [showResultModal, setshowResultModal] = useState(false);
 
@@ -46,10 +46,11 @@ const Answer = ()=>{
         const answer = Number(answerButtonIndex);
         if(answer === correct) {
             Quiz.correctCount+=1
+            Quiz.totalPoint += settingQuetions[quiz.index].point;
             setQuiz({...quiz,
                 isCorrect: true,
                 correctCount: Quiz.correctCount,
-                totalPoint: quiz.totalPoint +  settingQuetions[quiz.index].point
+                totalPoint: Quiz.totalPoint
             });
         } else {
             setQuiz({...quiz, isCorrect: false});

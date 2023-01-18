@@ -17,6 +17,7 @@ const Result = () =>{
         console.log(`Quiz index : ${Quiz.index}`);
         console.log(`Quiz MIN : ${Quiz.MIN}`);
         console.log(`Question length : ${QUESTIONS.length}`);
+        Quiz.correctCount = Number(location.state.correct);
         if(Quiz.MIN === QUESTIONS.length){
             Quiz.MIN = 0;
             history.push('/final');
