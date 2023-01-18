@@ -7,12 +7,11 @@ const Result = () =>{
     const history = useHistory();
     const location = useLocation();
     const [result, setResult] = useState("");
+    const [isFinal, setIsFinal] = useState(false);
 
     useEffect(()=>{
         showResult();
-        
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    });
     
     const TransTop = () => {
         console.log(`Quiz index : ${Quiz.index}`);
@@ -20,16 +19,30 @@ const Result = () =>{
         console.log(`Question length : ${QUESTIONS.length}`);
         if(Quiz.MIN === QUESTIONS.length){
             Quiz.MIN = 0;
+            history.push('/final');
+        } else {
+            history.push('/');
         }
-        history.push('/');
+       
         
     }
 
     const showResult = () => {
+        if (Quiz.MIN === QUESTIONS.length) {
+            setIsFinal(true);
+        }
         if(Number(location.state.correct) === QUESTIONS.length) {
             setResult("全問正解です。");
         } else {
             setResult(`${location.state.correct}問正解!!`);
+        }
+    }
+
+    const showFinalView = (isFinal) => {
+        if (isFinal) {
+            return <Button onClick={TransTop}>クイズを終わる。</Button>
+        } else {
+            return <Button onClick={TransTop}>クイズを続ける。</Button>
         }
     }
     
@@ -38,7 +51,7 @@ const Result = () =>{
             <TITLE>結果発表</TITLE>
             <RESULT>{result}</RESULT>
             <RESULT>{location.state.point}ポイント<ul /></RESULT>
-            <Button onClick={TransTop}>トップ画面へ戻る。</Button>
+            {showFinalView(isFinal)}
         </React.StrictMode>
         
     );

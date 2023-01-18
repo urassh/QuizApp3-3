@@ -1,6 +1,7 @@
 import {Top} from './Components/Top';
 import { Answer } from './Components/Answer';
 import { Result } from './Components/Result';
+import { FinalView } from './Components/FinalView';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import styled from "styled-components";
 
@@ -17,6 +18,9 @@ const App = () => {
           </Route>
           <Route exact path="/result">
             <Result />
+          </Route>
+          <Route  exact path="/final">
+            <FinalView />
           </Route>
         </Switch>
         
