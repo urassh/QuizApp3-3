@@ -45,7 +45,7 @@ const Answer = ()=>{
         const correct = settingQuetions[quiz.index].correct;
         const answer = Number(answerButtonIndex);
         if(answer === correct) {
-            Quiz.correctCount+=1
+            Quiz.correctCount+=1;
             Quiz.totalPoint += settingQuetions[quiz.index].point;
             setQuiz({...quiz,
                 isCorrect: true,
