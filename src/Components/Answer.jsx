@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Modal from "react-modal";
 import styled from "styled-components";
@@ -15,17 +15,10 @@ const Answer = ()=>{
     const [quiz, setQuiz] = useState({
         index: Quiz.index,
         isCorrect: false,
-        correctCount: 0,
+        correctCount: Quiz.correctCount,
         totalPoint: 0,
     });
     const [showResultModal, setshowResultModal] = useState(false);
-
-    useEffect(()=>{
-        const MAX = Quiz.MIN + Quiz.quizLength;
-        if(QUESTIONS.length < MAX ) {
-            Quiz.MIN = 0;
-        }
-    });
 
     const quizHandler = (e)=> {
         const answered = e.currentTarget.id;
@@ -52,9 +45,10 @@ const Answer = ()=>{
         const correct = settingQuetions[quiz.index].correct;
         const answer = Number(answerButtonIndex);
         if(answer === correct) {
+            Quiz.correctCount+=1
             setQuiz({...quiz,
                 isCorrect: true,
-                correctCount: quiz.correctCount+1,
+                correctCount: Quiz.correctCount,
                 totalPoint: quiz.totalPoint +  settingQuetions[quiz.index].point
             });
         } else {

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import styled from "styled-components";
-import { QUESTIONS } from './questionData';
+import { QUESTIONS, Quiz } from './questionData';
 
 const Result = () =>{
     const history = useHistory();
@@ -10,11 +10,19 @@ const Result = () =>{
 
     useEffect(()=>{
         showResult();
+        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
     const TransTop = () => {
+        console.log(`Quiz index : ${Quiz.index}`);
+        console.log(`Quiz MIN : ${Quiz.MIN}`);
+        console.log(`Question length : ${QUESTIONS.length}`);
+        if(Quiz.MIN === QUESTIONS.length){
+            Quiz.MIN = 0;
+        }
         history.push('/');
+        
     }
 
     const showResult = () => {
