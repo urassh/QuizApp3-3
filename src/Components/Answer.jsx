@@ -73,7 +73,6 @@ const Answer = ()=>{
                     <Button onClick={nextQuiz}>次へ</Button>
                 </div>
             </Modal>
-            
             <h1>第 {quiz.index+1} 問</h1>
             <p id="quiz-text">
                 {settingQuetions[quiz.index].text}
