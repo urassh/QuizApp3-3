@@ -23,7 +23,6 @@ const App = () => {
             <FinalView />
           </Route>
         </Switch>
-        
       </QuizContainer>
     </BrowserRouter>
     
