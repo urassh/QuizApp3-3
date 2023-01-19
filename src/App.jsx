@@ -10,16 +10,16 @@ const App = () => {
     <BrowserRouter>
       <QuizContainer>
         <Switch>
-          <Route exact path="/">
+          <Route path={`${process.env.PUBLIC_URL}/`}>
             <Top />
           </Route>
-          <Route exact path="/answer">
+          <Route path={`${process.env.PUBLIC_URL}/answer`}>
             <Answer />
           </Route>
-          <Route exact path="/result">
+          <Route path={`${process.env.PUBLIC_URL}/result`}>
             <Result />
           </Route>
-          <Route  exact path="/final">
+          <Route  path={`${process.env.PUBLIC_URL}/final`}>
             <FinalView />
           </Route>
         </Switch>
