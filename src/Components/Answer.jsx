@@ -58,6 +58,7 @@ const Answer = ()=>{
     }
 
     const showResultModalImage = (isCorrect) => {
+        console.log(QUESTIONS[quiz.index].text);
         if(isCorrect) {
             return <img src={correctImage} alt="incrrectImage" />;
         } else {
@@ -65,11 +66,18 @@ const Answer = ()=>{
         }
     }
 
+    const showDetailAnswer = (isCorrect) => {
+        if(!(isCorrect)) {
+            return <h2>答えは{settingQuetions[quiz.index].correct}番の<br/>「{settingQuetions[quiz.index].buttonsList[settingQuetions[quiz.index].correct-1]}」です。</h2>;
+        } 
+    }
+
     return(
         <div className="quiz-container">
             <Modal isOpen={showResultModal}>
                 <div id="result-form">
                     {showResultModalImage(quiz.isCorrect)}
+                    {showDetailAnswer(quiz.isCorrect)}
                     <Button onClick={nextQuiz}>次へ</Button>
                 </div>
             </Modal>
@@ -96,14 +104,15 @@ const Answer = ()=>{
 }
 
 const Button = styled.button`
-    width: 100%;
+    width: 85%;
     height: 48px;
     margin-top: 40px;
     line-height: 48px;
-    border-radius: 8px;
+    border-radius: 10px;
     color: white;
-    background-color: #4366ff;
+    background-color: #FF2222;
     font-family: "ヒラギノ丸ゴ ProN";
+    font-size: 24px;
     &:hover {
         opacity: .8;
     }
