@@ -13,13 +13,13 @@ const App = () => {
           <Route path={`${process.env.PUBLIC_URL}/`}>
             <Top />
           </Route>
-          <Route path={`${process.env.PUBLIC_URL}/answer`}>
+          <Route path={`${process.env.PUBLIC_URL}/QuizApp3-3/answer`}>
             <Answer />
           </Route>
-          <Route path={`${process.env.PUBLIC_URL}/result`}>
+          <Route path={`${process.env.PUBLIC_URL}/QuizApp3-3/result`}>
             <Result />
           </Route>
-          <Route  path={`${process.env.PUBLIC_URL}/final`}>
+          <Route  path={`${process.env.PUBLIC_URL}/QuizApp3-3/final`}>
             <FinalView />
           </Route>
         </Switch>
