@@ -10,7 +10,7 @@ const App = () => {
     <BrowserRouter>
       <QuizContainer>
         <Switch>
-          <Route path={`${process.env.PUBLIC_URL}/`}>
+          <Route path={`${process.env.PUBLIC_URL}QuizApp3/`}>
             <Top />
           </Route>
           <Route path={`${process.env.PUBLIC_URL}/QuizApp3-3/answer`}>
